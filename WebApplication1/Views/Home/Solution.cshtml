@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.SolutionViewModel;
+
+@{
+    ViewData["Title"] = "Solution Page";
+}
+
+
+
+<div class="grid">
+    @foreach(var row  in Model.Rows)
+    {
+        <div class="row">
+            @foreach(var cell in row.Cells)
+            {
+                <div class="cell">
+                    @cell
+                </div>
+            }
+        </div>
+    }
+</div>
+

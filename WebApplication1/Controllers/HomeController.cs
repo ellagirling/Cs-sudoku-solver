@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.soduko;
 
 namespace WebApplication1.Controllers;
 
@@ -17,8 +18,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var indexView = new IndexViewModel();
-        indexView.FirstName = "Paul";
-        indexView.LastName = "French";
+      
 
         return View(indexView);
     }
@@ -26,11 +26,24 @@ public class HomeController : Controller
     public IActionResult Index(IndexViewModel viewModel)
     {
         var indexView = new IndexViewModel();
-        indexView.FirstName = "Paul";
-        indexView.LastName = "French";
+        var grid = new Grid();
+        var Solution = grid.Solve(viewModel.SudokuProblem);
+        this.TempData["Solution"] = Solution;
 
-        return View(indexView);
+
+
+        return RedirectToAction("Solution");
     }
+
+    [HttpGet]
+    public IActionResult Solution()
+    {
+        var solutionView = new SolutionViewModel();
+        solutionView.Solution = (string)this.TempData["Solution"];
+
+        return View(solutionView);
+    }
+
 
     public IActionResult Privacy()
     {
