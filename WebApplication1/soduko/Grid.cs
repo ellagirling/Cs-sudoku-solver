@@ -52,20 +52,24 @@
                 }
 
             }
-            for (int i = 0; i < 9; i++)
-            {
-                this.Rows[i].Validate();
-                this.Columns[i].Validate(); 
-                this.Boxes[i].Validate(); 
+            for (int j = 0; j < 100; j++) {
+                for (int i = 0; i < 9; i++)
+                {
 
+                    this.Rows[i].Validate();
+                    this.Columns[i].Validate();
+                    this.Boxes[i].Validate();
+
+                }
             }
-            var result = string.Empty;
+                var result = string.Empty;
 
-            for (int i = 0; i < 81; i++)
-            {
-                result += Cells[i].Solved ? Cells[i].Value.ToString() : '.';
+                for (int i = 0; i < 81; i++)
+                {
+                    result += Cells[i].Solved ? Cells[i].Value.ToString() : '.';
 
-            }
+                }
+            
 
             return result;
              
